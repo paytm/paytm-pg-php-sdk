@@ -84,12 +84,11 @@
          * @param string $environment
          * @param string $mid
          * @param string $merchantKey
-         * @param string $clientId
          * @param string $website
          * @param string $callbackUrl
          * @throws Exception
          */
-        public static function initialize($environment, $mid, $merchantKey, $clientId, $website)
+        public static function initialize($environment, $mid, $merchantKey, $website)
         {
             if (!self::$isInitialized) {
                 LoggingUtil::addLog(LogLevel::INFO, __CLASS__, "initialize called");
@@ -103,9 +102,6 @@
                 elseif (CommonUtil::checkStringForEmptyOrNull($merchantKey)) {
                     throw new SDKException("Merchant key can not be null or empty");
                 }
-                elseif (CommonUtil::checkStringForEmptyOrNull($clientId)) {
-                    throw new SDKException("Client Id can not be null or empty");
-                }
                 elseif (CommonUtil::checkStringForEmptyOrNull($website)) {
                     throw new SDKException("Website can not be null or empty");
                 }
@@ -114,7 +110,6 @@
                     self::setEnvironment($environment);
                     self::setMid($mid);
                     self::setMerchantKey($merchantKey);
-                    self::setClientId($clientId);
                     self::setWebsite($website);
                 }
             }
