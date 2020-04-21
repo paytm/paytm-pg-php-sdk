@@ -11,6 +11,7 @@
     use Monolog\Handler\StreamHandler;
     use Monolog\Logger;
     use paytmpg\pg\constants\Config;
+    use paytmpg\pg\exceptions\SDKException;
 
     /**
      * Class LoggingUtil
@@ -40,6 +41,9 @@
         public static function addLog($severity, $className, $msg)
         {
             if (!isset(static::$logger)) {
+                if (!Config::$monologLogfile) {
+                    throw new SDKException('Monolog log file not set');
+                }
                 static::$logger = new Logger(Config::$monologName);
                 $stream = new StreamHandler(Config::$monologLogfile, Config::$monologLevel);
                 $formatter = new LineFormatter(null, null, false, true);
