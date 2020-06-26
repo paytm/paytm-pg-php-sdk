@@ -34,6 +34,11 @@
          * required
          */
         private $txnId;
+         /**
+         * @var string
+         * required
+         */
+        private $txnType;
         /**
          * @var string
          * required
@@ -70,6 +75,7 @@
             $this->orderId = $refundBuilder->orderId;
             $this->refId = $refundBuilder->refId;
             $this->txnId = $refundBuilder->txnId;
+            $this->txnType = $refundBuilder->txnType;
             $this->refundAmount = $refundBuilder->refundAmount;
 
             $this->extraParamsMap = $refundBuilder->extraParamsMap;
@@ -108,6 +114,14 @@
         public function getTxnId()
         {
             return $this->txnId;
+        }
+
+         /**
+         * @return string
+         */
+        public function getTxnType()
+        {
+        return $this->txnType;
         }
 
         /**
@@ -153,6 +167,7 @@
             $refundInitiateRequestBody->setRefId($this->getRefId());
             $refundInitiateRequestBody->setExtraParamsMap($this->getExtraParamsMap());
             $refundInitiateRequestBody->setTxnId($this->getTxnId());
+            $refundInitiateRequestBody->setTxnType($this->getTxnType());
             $refundInitiateRequestBody->setRefundAmount($this->getRefundAmount());
             $refundInitiateRequestBody->setComments($this->getComments());
             $refundInitiateRequestBody->setSubwalletAmount($this->getSubwalletAmount());
@@ -191,6 +206,10 @@
          * required
          */
         public $txnId;
+         /**
+         * @var string
+         */
+        public $txnType;
         /**
          * @var string
          * required
@@ -228,10 +247,11 @@
          * @param string $orderId
          * @param string $refId
          * @param string $txnId
+         * @param string $txnType
          * @param string $refundAmount
          * @throws \Exception
          */
-        public function __construct($orderId, $refId, $txnId, $refundAmount)
+        public function __construct($orderId, $refId, $txnId, $txnType, $refundAmount)
         {
             if (CommonUtil::checkStringForEmptyOrNull($orderId)) {
                 throw new SDKException("OrderId can not be null or empty");
@@ -242,6 +262,9 @@
             elseif (CommonUtil::checkStringForEmptyOrNull($txnId)) {
                 throw new SDKException("Txn ID can not be null or empty");
             }
+            else if (CommonUtil::checkStringForEmptyOrNull($txnType)) {
+                 throw new SDKException("Txn type can not be null or empty");
+            }
             elseif (CommonUtil::checkStringForEmptyOrNull($refundAmount)) {
                 throw new SDKException("Refund amount can not be null or empty");
             }
@@ -249,6 +272,7 @@
                 $this->orderId = $orderId;
                 $this->refId = $refId;
                 $this->txnId = $txnId;
+                $this->txnType = $txnType;
                 $this->refundAmount = $refundAmount;
             }
         }
@@ -300,6 +324,16 @@
             $this->txnId = $txnId;
             return $this;
         }
+        
+        /**
+         * @param string txnType
+         * @return $this
+         */
+        public function setTxnType($txnType) 
+        {
+            $this->txnType = $txnType;
+            return this;
+         }
 
         /**
          * @param string $refundAmount

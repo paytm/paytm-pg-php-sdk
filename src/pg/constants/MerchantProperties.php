@@ -60,35 +60,36 @@
         /**
          * @var string $callbackUrl callback url on which paytm will respond for api calls
          */
-        private static $callbackUrl = "https://pg-staging.paytm.in/MerchantSite/bankResponse";
+        private static $callbackUrl = "";
 
         /** URLs */
         /**
          * @var string
          */
-        private static $initiateTxnUrl = "https://securegw-stage.paytm.in/theia/api/v1/initiateTransaction";
+        private static $initiateTxnUrl = "https://securegw-stage.paytm.in/order/initiate";
         /**
          * @var string
          */
-        private static $refundUrl = "https://securegw-stage.paytm.in/refund/api/v1/async/refund";
+        private static $refundUrl = "https://securegw-stage.paytm.in/refund/apply";
         /**
          * @var string
          */
-        private static $paymentStatusUrl = "https://securegw-stage.paytm.in/merchant-status/api/v1/getPaymentStatus";
+        private static $paymentStatusUrl = "https://securegw-stage.paytm.in/v3/order/status";
         /**
          * @var string
          */
-        private static $refundStatusUrl = "https://pgp-ite.paytm.in/refund/api/v1/refundStatus";
+        private static $refundStatusUrl = "https://securegw-stage.paytm.in/v2/refund/status";
 
         /**
          * @param string $environment
          * @param string $mid
          * @param string $merchantKey
+         * @param string $clientId
          * @param string $website
          * @param string $callbackUrl
          * @throws Exception
          */
-        public static function initialize($environment, $mid, $merchantKey, $website)
+        public static function initialize($environment, $mid, $merchantKey, $clientId, $website)
         {
             if (!self::$isInitialized) {
                 LoggingUtil::addLog(LogLevel::INFO, __CLASS__, "initialize called");
@@ -102,6 +103,9 @@
                 elseif (CommonUtil::checkStringForEmptyOrNull($merchantKey)) {
                     throw new SDKException("Merchant key can not be null or empty");
                 }
+                elseif (CommonUtil::checkStringForEmptyOrNull($clientId)) {
+                    throw new SDKException("Client Id can not be null or empty");
+                }
                 elseif (CommonUtil::checkStringForEmptyOrNull($website)) {
                     throw new SDKException("Website can not be null or empty");
                 }
@@ -110,6 +114,7 @@
                     self::setEnvironment($environment);
                     self::setMid($mid);
                     self::setMerchantKey($merchantKey);
+                    self::setClientId($clientId);
                     self::setWebsite($website);
                 }
             }
@@ -260,10 +265,10 @@
             self::$environment = $environment;
             LoggingUtil::addLog(LogLevel::INFO, __CLASS__, "Setting Environment for " . $environment);
             if ($environment === LibraryConstants::PRODUCTION_ENVIRONMENT) {
-                self::$initiateTxnUrl = "https://securegw.paytm.in/theia/api/v1/initiateTransaction";
-                self::$refundUrl = "https://securegw.paytm.in/refund/api/v1/async/refund";
-                self::$paymentStatusUrl = "https://securegw.paytm.in/merchant-status/api/v1/getPaymentStatus";
-                self::$refundStatusUrl = "https://pgp-ite.paytm.in/refund/api/v1/refundStatus";
+                self::$initiateTxnUrl   = "https://securegw.paytm.in/order/initiate";
+                self::$refundUrl        = "https://securegw.paytm.in/refund/apply";
+                self::$paymentStatusUrl = "https://securegw.paytm.in/v3/order/status";
+                self::$refundStatusUrl  = "https://securegw.paytm.in/v2/refund/status";
             }
         }
     }
