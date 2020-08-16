@@ -25,7 +25,7 @@
         /**
          * @var string
          */
-        static $monologLogfile = PROJECT . '/logs/app.log';
+        static $monologLogfile = __dir__ . '/logs/app.log';
 
         /**
          * This holds unique uuid v4
