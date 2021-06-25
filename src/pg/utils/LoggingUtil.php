@@ -48,7 +48,7 @@
                 $stream->setFormatter($formatter);
                 static::$logger->pushHandler($stream);
                 /** Uncomment the below line to disable logs */
-                //static::$logger->pushHandler(new \Monolog\Handler\NullHandler());
+                static::$logger->pushHandler(new \Monolog\Handler\NullHandler());
             }
             static::$logger->log($severity, "[" . Config::$requestId . "] " . "<" . $className . ">" . ": " . $msg);
         }
