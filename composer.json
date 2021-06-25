@@ -1,5 +1,5 @@
 {
-  "name": "mbhamra/paytm-pg",
+  "name": "paytm/paytm-pg",
   "description": "Paytm PHP Library",
   "keywords": ["Paytm","Client","SDK","PHP"],
   "authors": [
@@ -9,7 +9,6 @@
     }
   ],
   "homepage": "https://developer.paytm.com/docs",
-  "minimum-stability": "dev"
   "require": {
     "php": ">=5.6.0",
     "ext-json": "*",
