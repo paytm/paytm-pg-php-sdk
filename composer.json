@@ -14,7 +14,7 @@
     "ext-json": "*",
     "ext-curl": "*",
     "ext-openssl": "*",
-    "netresearch/jsonmapper": "^1.4",
+    "netresearch/jsonmapper": "4.0",
     "monolog/monolog": "^1.24"
   },
   "autoload": {
