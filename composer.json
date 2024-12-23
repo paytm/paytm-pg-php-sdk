@@ -4,11 +4,11 @@
   "keywords": ["Paytm","Client","SDK","PHP"],
   "authors": [
     {
-      "name": "Sakshi Jain",
+      "name": "Integration Dev",
       "role": "Developer"
     }
   ],
-  "homepage": "https://developer.paytm.com/docs",
+  "homepage": "https://developer.paytmpayments.com/docs",
   "require": {
     "php": ">=5.6.0",
     "ext-json": "*",

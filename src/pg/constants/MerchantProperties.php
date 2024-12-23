@@ -66,19 +66,19 @@
         /**
          * @var string
          */
-        private static $initiateTxnUrl = "https://securegw-stage.paytm.in/order/initiate";
+        private static $initiateTxnUrl = "https://securestage.paytmpayments.com/order/initiate";
         /**
          * @var string
          */
-        private static $refundUrl = "https://securegw-stage.paytm.in/refund/apply";
+        private static $refundUrl = "https://securestage.paytmpayments.com/refund/apply";
         /**
          * @var string
          */
-        private static $paymentStatusUrl = "https://securegw-stage.paytm.in/v3/order/status";
+        private static $paymentStatusUrl = "https://securestage.paytmpayments.com/v3/order/status";
         /**
          * @var string
          */
-        private static $refundStatusUrl = "https://securegw-stage.paytm.in/v2/refund/status";
+        private static $refundStatusUrl = "https://securestage.paytmpayments.com/v2/refund/status";
 
         /**
          * @param string $environment
@@ -265,10 +265,10 @@
             self::$environment = $environment;
             LoggingUtil::addLog(LogLevel::INFO, __CLASS__, "Setting Environment for " . $environment);
             if ($environment === LibraryConstants::PRODUCTION_ENVIRONMENT) {
-                self::$initiateTxnUrl   = "https://securegw.paytm.in/order/initiate";
-                self::$refundUrl        = "https://securegw.paytm.in/refund/apply";
-                self::$paymentStatusUrl = "https://securegw.paytm.in/v3/order/status";
-                self::$refundStatusUrl  = "https://securegw.paytm.in/v2/refund/status";
+                self::$initiateTxnUrl   = "https://secure.paytmpayments.com/order/initiate";
+                self::$refundUrl        = "https://secure.paytmpayments.com/refund/apply";
+                self::$paymentStatusUrl = "https://secure.paytmpayments.com/v3/order/status";
+                self::$refundStatusUrl  = "https://secure.paytmpayments.com/v2/refund/status";
             }
         }
     }
